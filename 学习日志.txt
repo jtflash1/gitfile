@@ -1,0 +1,39 @@
+将其他工程配置文件拉去到本工程
+<bttn-market-atomic.dir>${basedir}/../bttn-market-atomic
+		</bttn-market-atomic.dir>
+<!-- 源码目录配置 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${bttn-market-atomic.dir}/src/main/resources/mapper
+									</directory>
+									<targetPath>${basedir}/src/main/resources/provide</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Source attach plugin 将源码打包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<nonFilteredFileExtensions>
+						<!--<nonFilteredFileExtension>p12</nonFilteredFileExtension> -->
+						<nonFilteredFileExtension>jks</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
